@@ -1,0 +1,86 @@
+class enumeracion{
+
+enum Velocidades : Int{
+    
+    case apagado = 0
+    case velocidadBaja = 20
+    case velocidadMedia = 50
+    case velocidadAlta = 120
+    
+    init(velocidadInicial : Velocidades){
+    
+        self = velocidadInicial
+    
+    
+    }
+    
+    
+    }
+
+}
+
+
+
+class Auto : enumeracion
+{
+    var velocidad = Velocidades.apagado
+  
+    
+    init(velocidad : Velocidades){
+    
+        self.velocidad=Velocidades.apagado
+        }
+    
+    
+    func cambioDeVelocidad()->(actual: Int,velocidadCadena: String)
+    {
+        let acutual = velocidad.rawValue
+        var velocidadCadena = ""
+        
+        
+        
+        switch velocidad {
+        
+        case  Velocidades.apagado:
+            velocidad = Velocidades.velocidadBaja
+            velocidadCadena = "apagado"
+            return (acutual , velocidadCadena)
+        case Velocidades.velocidadBaja:
+            velocidad = Velocidades.velocidadMedia
+            velocidadCadena = "velocidad baja"
+            return (acutual , velocidadCadena)
+        case Velocidades.velocidadMedia:
+            velocidad = Velocidades.velocidadAlta
+            velocidadCadena = "velocidad media"
+            return (acutual , velocidadCadena)
+        case Velocidades.velocidadAlta:
+            velocidad = Velocidades.velocidadMedia
+            print("velocidad Alta")
+            return (acutual , velocidadCadena)
+        default:
+            if velocidad.hashValue == 50
+            {
+            
+                velocidad = Velocidades.velocidadBaja
+                velocidadCadena = "velocidad baja"
+                return ( acutual,velocidadCadena)
+            }
+            
+            break
+            
+            
+            }
+        let veloccimetro = (acutual , velocidadCadena)
+        return veloccimetro
+    }
+}
+
+var auto = Auto(velocidad: .apagado)
+
+for x in 1...20{
+
+    var tupla = auto.cambioDeVelocidad()
+    print(tupla)
+
+
+}
